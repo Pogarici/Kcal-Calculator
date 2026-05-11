@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Fitness Calculator</title>
+<title>Kcal Macros</title>
 
 <style>
     *{
@@ -37,9 +37,10 @@
     h1{
         text-align:center;
         margin-bottom:25px;
-        font-size:30px;
+        font-size:32px;
         font-weight:700;
-        color:#111;
+        color:#007aff;
+        letter-spacing:-0.5px;
     }
 
     .input-group{
@@ -112,13 +113,6 @@
         font-weight:700;
         color:#007aff;
     }
-
-    .footer{
-        margin-top:20px;
-        text-align:center;
-        font-size:13px;
-        color:#777;
-    }
 </style>
 </head>
 
@@ -126,7 +120,7 @@
 
 <div class="card">
 
-    <h1>Fitness Calculator</h1>
+    <h1>Kcal Macros</h1>
 
     <div class="input-group">
         <label for="weight">Weight (kg)</label>
@@ -175,10 +169,6 @@
         </tbody>
     </table>
 
-    <div class="footer">
-        Fitness Nutrition Calculator
-    </div>
-
 </div>
 
 <script>
@@ -196,42 +186,26 @@ function calculate(){
         return;
     }
 
-    // =========================
     // SLABIT
-    // =========================
-
     const slabitKcal = (kg * 22) - 26;
-    const slabitProtein = kg * 2;
+    const slabitProtein = kg * 2.2;
     const slabitFat = kg * 0.6;
-
-    // your formula
     const slabitCarbs =
         ((slabitProtein * 4) + (slabitFat * 9)) / 4;
-
     const slabitFiber =
         (14 / 1000) * slabitKcal;
 
-    // =========================
     // MENTINERE
-    // =========================
-
     const maintainKcal = (kg * 28) - 33;
     const maintainProtein = kg * 2;
-
-    // median between 0.6 and 1
     const maintainFat =
         ((kg * 0.6) + (kg * 1)) / 2;
-
     const maintainCarbs =
         ((maintainProtein * 4) + (maintainFat * 9)) / 4;
-
     const maintainFiber =
         (14 / 1000) * maintainKcal;
 
-    // =========================
     // OUTPUT
-    // =========================
-
     document.getElementById("slabitKcal").innerText =
         Math.round(slabitKcal) + " kcal";
 
