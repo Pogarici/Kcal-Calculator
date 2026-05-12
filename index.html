@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Kcal Macros</title>
 
 <style>
+
+/* ===== BASE ===== */
 
 *{
     margin:0;
@@ -15,61 +17,32 @@
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
 }
 
-html{
-    font-size:16px;
-}
-
 body{
     background:#f2f2f7;
-    min-height:100vh;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
     padding:14px 8px;
 }
 
-/* =========================
-   CARD
-========================= */
-
 .card{
     width:100%;
-    max-width:480px;
+    max-width:540px;
     background:white;
     border-radius:24px;
     padding:18px;
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.08),
-        0 4px 10px rgba(0,0,0,0.04);
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
-
-/* =========================
-   TITLE
-========================= */
 
 h1{
     text-align:center;
-    margin-bottom:20px;
-    font-size:clamp(1.8rem, 5vw, 2.2rem);
-    font-weight:700;
     color:#007aff;
-    letter-spacing:-0.5px;
-}
-
-/* =========================
-   INPUT
-========================= */
-
-.input-group{
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 label{
+    font-weight:600;
     display:block;
     margin-bottom:8px;
-    font-size:0.9rem;
-    font-weight:600;
-    color:#444;
 }
 
 input{
@@ -78,125 +51,66 @@ input{
     border:none;
     border-radius:16px;
     background:#f2f2f7;
-    font-size:1rem;
-    outline:none;
-    transition:0.2s;
-    appearance:none;
-    -webkit-appearance:none;
+    margin-bottom:18px;
 }
 
-input:focus{
-    background:#e9ecf3;
-}
+/* ===== TABLE ===== */
 
-/* =========================
-   TABLE
-========================= */
-
-.table-wrapper{
-    width:100%;
-    overflow:hidden;
-    border-radius:18px;
-}
-
-table{
+.table{
     width:100%;
     border-collapse:collapse;
-    table-layout:fixed;
+    overflow:hidden;
+    border-radius:16px;
 }
 
-thead{
+.table thead tr{
     background:#111827;
     color:white;
 }
 
-th{
-    padding:12px 4px;
-    font-size:0.82rem;
+.table thead th{
+    padding:12px;
     font-weight:700;
     text-align:center;
-    white-space:nowrap;
 }
 
-td{
-    padding:11px 4px;
+.table td{
+    padding:12px;
     text-align:center;
-    font-size:0.82rem;
-    border-bottom:1px solid #ececec;
-    word-break:break-word;
-    line-height:1.1;
+    border-bottom:1px solid rgba(0,0,0,0.06);
 }
 
-th:first-child,
-td:first-child{
-    width:28%;
-}
-
-th:nth-child(2),
-th:nth-child(3),
-td:nth-child(2),
-td:nth-child(3){
-    width:36%;
-}
-
-tbody tr:last-child td{
-    border-bottom:none;
-}
-
-tbody tr:nth-child(even){
-    background:#fafafa;
-}
-
-.metric{
-    font-weight:600;
+.table td:first-child{
     text-align:left;
-    color:#222;
-    padding-left:8px;
+    font-weight:600;
 }
 
-.highlight{
-    font-weight:700;
+.kcal{
     color:#007aff;
+    font-weight:700;
 }
 
-/* =========================
-   DROPDOWNS
-========================= */
+/* ===== DROPDOWN ===== */
 
 .dropdown{
     margin-top:16px;
-    border-radius:18px;
+    border-radius:16px;
     overflow:hidden;
-    background:#f8f8fa;
-    border:1px solid #ececec;
+    border:1px solid #ddd;
 }
 
 .dropdown-btn{
     width:100%;
-    border:none;
+    padding:14px;
     background:white;
-    padding:16px;
-    font-size:0.9rem;
+    border:none;
     font-weight:700;
-    color:#111827;
     display:flex;
     justify-content:space-between;
-    align-items:center;
     cursor:pointer;
 }
 
-.dropdown-btn:active{
-    background:#f2f2f7;
-}
-
-.arrow{
-    transition:0.25s ease;
-    font-size:0.9rem;
-}
-
-.dropdown.active .arrow{
-    transform:rotate(180deg);
-}
+.arrow{ transition:0.3s; }
 
 .dropdown-content{
     max-height:0;
@@ -205,86 +119,29 @@ tbody tr:nth-child(even){
     background:#fafafa;
 }
 
-.dropdown-inner{
-    padding:16px;
-    font-size:0.85rem;
-    color:#555;
-    line-height:1.5;
+/* ===== HEADER (ONLY MAIN TABLE KEEPS IT) ===== */
+
+.meal-header-global{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#111827;
+    color:white;
+    font-weight:700;
+    padding:12px 14px;
+    border-radius:14px;
+    margin:10px 10px 14px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ===== MEALS ===== */
 
-@media (max-width: 480px){
-
-    body{
-        padding:8px 4px;
-    }
-
-    .card{
-        padding:14px;
-        border-radius:20px;
-    }
-
-    h1{
-        margin-bottom:18px;
-        font-size:1.6rem;
-    }
-
-    label{
-        font-size:0.82rem;
-    }
-
-    input{
-        padding:12px;
-        font-size:0.92rem;
-    }
-
-    th{
-        font-size:0.72rem;
-        padding:10px 2px;
-    }
-
-    td{
-        font-size:0.72rem;
-        padding:10px 2px;
-    }
-
-    .metric{
-        font-size:0.72rem;
-        padding-left:6px;
-    }
-
-    .dropdown-btn{
-        font-size:0.8rem;
-        padding:14px;
-    }
-
-    .dropdown-inner{
-        font-size:0.78rem;
-    }
+.meal-title{
+    font-weight:900;
+    padding:14px 14px 6px;
+    color:#e11d48;
 }
 
-@media (max-width: 360px){
-
-    h1{
-        font-size:1.45rem;
-    }
-
-    th,
-    td,
-    .metric{
-        font-size:0.68rem;
-    }
-
-    input{
-        font-size:0.85rem;
-    }
-
-    td{
-        padding:9px 1px;
-    }
+.inner{
+    padding:10px;
 }
 
 </style>
@@ -294,249 +151,177 @@ tbody tr:nth-child(even){
 
 <div class="card">
 
-    <h1>Kcal Macros</h1>
+<h1>Kcal Macros</h1>
 
-    <div class="input-group">
+<label>Weight (kg)</label>
+<input type="number" id="weight" placeholder="Enter weight"/>
 
-        <label for="weight">
-            Weight (kg)
-        </label>
+<!-- MAIN TABLE -->
+<table class="table">
+<thead>
+<tr>
+<th></th>
+<th>Slabit</th>
+<th>Mentinere</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Kcal</td><td id="k1" class="kcal">- kcal</td><td id="k2" class="kcal">- kcal</td></tr>
+<tr><td>Protein</td><td id="p1">- g</td><td id="p2">- g</td></tr>
+<tr><td>Carbs</td><td id="c1">- g</td><td id="c2">- g</td></tr>
+<tr><td>Fat</td><td id="f1">- g</td><td id="f2">- g</td></tr>
+<tr><td>Fiber</td><td id="fi1">- g</td><td id="fi2">- g</td></tr>
+</tbody>
+</table>
 
-        <input 
-            type="number" 
-            id="weight" 
-            placeholder="Enter your weight"
-        />
+<!-- DROPDOWN -->
+<div class="dropdown">
 
-    </div>
+<button class="dropdown-btn">
+<span>3 Meals + 1 Snack</span>
+<span class="arrow">▼</span>
+</button>
 
-    <div class="table-wrapper">
+<div class="dropdown-content">
 
-        <table>
+<div class="inner">
 
-            <thead>
+<!-- BREAKFAST -->
+<div class="meal-title">Breakfast</div>
 
-                <tr>
-                    <th></th>
-                    <th>Slabit</th>
-                    <th>Mentinere</th>
-                </tr>
+<table class="table">
+<tbody>
+<tr><td>Kcal</td><td class="kcal" id="b_k1">- kcal</td><td class="kcal" id="b_k2">- kcal</td></tr>
+<tr><td>Protein</td><td id="b_p1">- g</td><td id="b_p2">- g</td></tr>
+<tr><td>Carbs</td><td id="b_c1">- g</td><td id="b_c2">- g</td></tr>
+<tr><td>Fat</td><td id="b_f1">- g</td><td id="b_f2">- g</td></tr>
+<tr><td>Fiber</td><td id="b_fi1">- g</td><td id="b_fi2">- g</td></tr>
+</tbody>
+</table>
 
-            </thead>
+<!-- LUNCH -->
+<div class="meal-title">Lunch</div>
 
-            <tbody>
+<table class="table">
+<tbody>
+<tr><td>Kcal</td><td class="kcal" id="l_k1">- kcal</td><td class="kcal" id="l_k2">- kcal</td></tr>
+<tr><td>Protein</td><td id="l_p1">- g</td><td id="l_p2">- g</td></tr>
+<tr><td>Carbs</td><td id="l_c1">- g</td><td id="l_c2">- g</td></tr>
+<tr><td>Fat</td><td id="l_f1">- g</td><td id="l_f2">- g</td></tr>
+<tr><td>Fiber</td><td id="l_fi1">- g</td><td id="l_fi2">- g</td></tr>
+</tbody>
+</table>
 
-                <tr>
-                    <td class="metric">Kcal</td>
-                    <td id="slabitKcal" class="highlight">-</td>
-                    <td id="maintainKcal" class="highlight">-</td>
-                </tr>
+<!-- SNACK -->
+<div class="meal-title">Snack</div>
 
-                <tr>
-                    <td class="metric">Protein</td>
-                    <td id="slabitProtein">-</td>
-                    <td id="maintainProtein">-</td>
-                </tr>
+<table class="table">
+<tbody>
+<tr><td>Kcal</td><td class="kcal" id="s_k1">- kcal</td><td class="kcal" id="s_k2">- kcal</td></tr>
+<tr><td>Protein</td><td id="s_p1">- g</td><td id="s_p2">- g</td></tr>
+<tr><td>Carbs</td><td id="s_c1">- g</td><td id="s_c2">- g</td></tr>
+<tr><td>Fat</td><td id="s_f1">- g</td><td id="s_f2">- g</td></tr>
+<tr><td>Fiber</td><td id="s_fi1">- g</td><td id="s_fi2">- g</td></tr>
+</tbody>
+</table>
 
-                <tr>
-                    <td class="metric">Carbs</td>
-                    <td id="slabitCarbs">-</td>
-                    <td id="maintainCarbs">-</td>
-                </tr>
+<!-- DINNER -->
+<div class="meal-title">Dinner</div>
 
-                <tr>
-                    <td class="metric">Fat</td>
-                    <td id="slabitFat">-</td>
-                    <td id="maintainFat">-</td>
-                </tr>
+<table class="table">
+<tbody>
+<tr><td>Kcal</td><td class="kcal" id="d_k1">- kcal</td><td class="kcal" id="d_k2">- kcal</td></tr>
+<tr><td>Protein</td><td id="d_p1">- g</td><td id="d_p2">- g</td></tr>
+<tr><td>Carbs</td><td id="d_c1">- g</td><td id="d_c2">- g</td></tr>
+<tr><td>Fat</td><td id="d_f1">- g</td><td id="d_f2">- g</td></tr>
+<tr><td>Fiber</td><td id="d_fi1">- g</td><td id="d_fi2">- g</td></tr>
+</tbody>
+</table>
 
-                <tr>
-                    <td class="metric">Fiber</td>
-                    <td id="slabitFiber">-</td>
-                    <td id="maintainFiber">-</td>
-                </tr>
+</div>
 
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <!-- =========================
-         DROPDOWN 1
-    ========================== -->
-
-    <div class="dropdown">
-
-        <button class="dropdown-btn">
-            <span>3 Meals + 1 Snack</span>
-            <span class="arrow">▼</span>
-        </button>
-
-        <div class="dropdown-content">
-
-            <div class="dropdown-inner">
-
-                Content will be added here later.
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- =========================
-         DROPDOWN 2
-    ========================== -->
-
-    <div class="dropdown">
-
-        <button class="dropdown-btn">
-            <span>2 Meals + 2 Snacks</span>
-            <span class="arrow">▼</span>
-        </button>
-
-        <div class="dropdown-content">
-
-            <div class="dropdown-inner">
-
-                Content will be added here later.
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 <script>
 
-const weightInput = document.getElementById("weight");
+const w=document.getElementById("weight");
+w.addEventListener("input",calc);
 
-weightInput.addEventListener("input", calculate);
-
-function calculate(){
-
-    const kg = parseFloat(weightInput.value);
-
-    if(!kg || kg <= 0){
-        clearValues();
-        return;
-    }
-
-    // =========================
-    // SLABIT
-    // =========================
-
-    const slabitKcal = (kg * 22) - 26;
-    const slabitProtein = kg * 2.2;
-    const slabitFat = kg * 0.6;
-
-    const slabitCarbs =
-        ((slabitProtein * 4) + (slabitFat * 9)) / 4;
-
-    const slabitFiber =
-        (14 / 1000) * slabitKcal;
-
-    // =========================
-    // MENTINERE
-    // =========================
-
-    const maintainKcal = (kg * 28) - 33;
-    const maintainProtein = kg * 2;
-
-    const maintainFat =
-        ((kg * 0.6) + (kg * 1)) / 2;
-
-    const maintainCarbs =
-        ((maintainProtein * 4) + (maintainFat * 9)) / 4;
-
-    const maintainFiber =
-        (14 / 1000) * maintainKcal;
-
-    // =========================
-    // OUTPUT
-    // =========================
-
-    document.getElementById("slabitKcal").innerText =
-        Math.round(slabitKcal) + " kcal";
-
-    document.getElementById("slabitProtein").innerText =
-        Math.round(slabitProtein) + " g";
-
-    document.getElementById("slabitCarbs").innerText =
-        Math.round(slabitCarbs) + " g";
-
-    document.getElementById("slabitFat").innerText =
-        Math.round(slabitFat) + " g";
-
-    document.getElementById("slabitFiber").innerText =
-        Math.round(slabitFiber) + " g";
-
-    document.getElementById("maintainKcal").innerText =
-        Math.round(maintainKcal) + " kcal";
-
-    document.getElementById("maintainProtein").innerText =
-        Math.round(maintainProtein) + " g";
-
-    document.getElementById("maintainCarbs").innerText =
-        Math.round(maintainCarbs) + " g";
-
-    document.getElementById("maintainFat").innerText =
-        Math.round(maintainFat) + " g";
-
-    document.getElementById("maintainFiber").innerText =
-        Math.round(maintainFiber) + " g";
+function format(n){
+return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function clearValues(){
-
-    const ids = [
-        "slabitKcal",
-        "slabitProtein",
-        "slabitCarbs",
-        "slabitFat",
-        "slabitFiber",
-        "maintainKcal",
-        "maintainProtein",
-        "maintainCarbs",
-        "maintainFat",
-        "maintainFiber"
-    ];
-
-    ids.forEach(id=>{
-        document.getElementById(id).innerText = "-";
-    });
+function set(id,val,unit=""){
+const e=document.getElementById(id);
+if(e) e.innerText=format(val)+unit;
 }
 
-/* =========================
-   DROPDOWNS
-========================= */
+function calc(){
 
-const dropdowns = document.querySelectorAll(".dropdown");
+const kg=parseFloat(w.value);
+if(!kg)return;
 
-dropdowns.forEach(dropdown=>{
+const k1=(kg*22)-26;
+const p1=kg*2.2;
+const f1=kg*0.6;
+const c1=((p1*4)+(f1*9))/4;
+const fi1=(14/1000)*k1;
 
-    const button =
-        dropdown.querySelector(".dropdown-btn");
+const k2=(kg*28)-33;
+const p2=kg*2;
+const f2=((kg*0.6)+(kg*1))/2;
+const c2=((p2*4)+(f2*9))/4;
+const fi2=(14/1000)*k2;
 
-    const content =
-        dropdown.querySelector(".dropdown-content");
+/* MAIN */
+set("k1",k1," kcal");
+set("k2",k2," kcal");
+set("p1",p1," g");
+set("p2",p2," g");
+set("c1",c1," g");
+set("c2",c2," g");
+set("f1",f1," g");
+set("f2",f2," g");
+set("fi1",fi1," g");
+set("fi2",fi2," g");
 
-    button.addEventListener("click", ()=>{
+/* BREAKFAST */
+set("b_k1",k1*0.25," kcal"); set("b_k2",k2*0.25," kcal");
+set("b_p1",p1*0.25," g"); set("b_p2",p2*0.25," g");
+set("b_c1",c1*0.25," g"); set("b_c2",c2*0.25," g");
+set("b_f1",f1*0.25," g"); set("b_f2",f2*0.25," g");
+set("b_fi1",fi1*0.25," g"); set("b_fi2",fi2*0.25," g");
 
-        dropdown.classList.toggle("active");
+/* LUNCH */
+set("l_k1",k1*0.30," kcal"); set("l_k2",k2*0.30," kcal");
+set("l_p1",p1*0.30," g"); set("l_p2",p2*0.30," g");
+set("l_c1",c1*0.30," g"); set("l_c2",c2*0.30," g");
+set("l_f1",f1*0.30," g"); set("l_f2",f2*0.30," g");
+set("l_fi1",fi1*0.30," g"); set("l_fi2",fi2*0.30," g");
 
-        if(content.style.maxHeight){
-            content.style.maxHeight = null;
-        }else{
-            content.style.maxHeight =
-                content.scrollHeight + "px";
-        }
+/* SNACK */
+set("s_k1",k1*0.15," kcal"); set("s_k2",k2*0.15," kcal");
+set("s_p1",p1*0.15," g"); set("s_p2",p2*0.15," g");
+set("s_c1",c1*0.15," g"); set("s_c2",c2*0.15," g");
+set("s_f1",f1*0.15," g"); set("s_f2",f2*0.15," g");
+set("s_fi1",fi1*0.15," g"); set("s_fi2",fi2*0.15," g");
 
-    });
+/* DINNER */
+set("d_k1",k1*0.30," kcal"); set("d_k2",k2*0.30," kcal");
+set("d_p1",p1*0.30," g"); set("d_p2",p2*0.30," g");
+set("d_c1",c1*0.30," g"); set("d_c2",c2*0.30," g");
+set("d_f1",f1*0.30," g"); set("d_f2",f2*0.30," g");
+set("d_fi1",fi1*0.30," g"); set("d_fi2",fi2*0.30," g");
 
+}
+
+/* dropdown */
+document.querySelector(".dropdown-btn").addEventListener("click",function(){
+const d=this.parentElement;
+const c=d.querySelector(".dropdown-content");
+c.style.maxHeight=c.style.maxHeight?null:c.scrollHeight+"px";
 });
 
 </script>
