@@ -127,13 +127,11 @@ td{
     line-height:1.1;
 }
 
-/* Narrow first column */
 th:first-child,
 td:first-child{
     width:28%;
 }
 
-/* Equal smaller columns */
 th:nth-child(2),
 th:nth-child(3),
 td:nth-child(2),
@@ -159,6 +157,59 @@ tbody tr:nth-child(even){
 .highlight{
     font-weight:700;
     color:#007aff;
+}
+
+/* =========================
+   DROPDOWNS
+========================= */
+
+.dropdown{
+    margin-top:16px;
+    border-radius:18px;
+    overflow:hidden;
+    background:#f8f8fa;
+    border:1px solid #ececec;
+}
+
+.dropdown-btn{
+    width:100%;
+    border:none;
+    background:white;
+    padding:16px;
+    font-size:0.9rem;
+    font-weight:700;
+    color:#111827;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+}
+
+.dropdown-btn:active{
+    background:#f2f2f7;
+}
+
+.arrow{
+    transition:0.25s ease;
+    font-size:0.9rem;
+}
+
+.dropdown.active .arrow{
+    transform:rotate(180deg);
+}
+
+.dropdown-content{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+    background:#fafafa;
+}
+
+.dropdown-inner{
+    padding:16px;
+    font-size:0.85rem;
+    color:#555;
+    line-height:1.5;
 }
 
 /* =========================
@@ -203,6 +254,15 @@ tbody tr:nth-child(even){
     .metric{
         font-size:0.72rem;
         padding-left:6px;
+    }
+
+    .dropdown-btn{
+        font-size:0.8rem;
+        padding:14px;
+    }
+
+    .dropdown-inner{
+        font-size:0.78rem;
     }
 }
 
@@ -299,6 +359,52 @@ tbody tr:nth-child(even){
             </tbody>
 
         </table>
+
+    </div>
+
+    <!-- =========================
+         DROPDOWN 1
+    ========================== -->
+
+    <div class="dropdown">
+
+        <button class="dropdown-btn">
+            <span>3 Meals + 1 Snack</span>
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="dropdown-content">
+
+            <div class="dropdown-inner">
+
+                Content will be added here later.
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         DROPDOWN 2
+    ========================== -->
+
+    <div class="dropdown">
+
+        <button class="dropdown-btn">
+            <span>2 Meals + 2 Snacks</span>
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="dropdown-content">
+
+            <div class="dropdown-inner">
+
+                Content will be added here later.
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -403,6 +509,35 @@ function clearValues(){
         document.getElementById(id).innerText = "-";
     });
 }
+
+/* =========================
+   DROPDOWNS
+========================= */
+
+const dropdowns = document.querySelectorAll(".dropdown");
+
+dropdowns.forEach(dropdown=>{
+
+    const button =
+        dropdown.querySelector(".dropdown-btn");
+
+    const content =
+        dropdown.querySelector(".dropdown-content");
+
+    button.addEventListener("click", ()=>{
+
+        dropdown.classList.toggle("active");
+
+        if(content.style.maxHeight){
+            content.style.maxHeight = null;
+        }else{
+            content.style.maxHeight =
+                content.scrollHeight + "px";
+        }
+
+    });
+
+});
 
 </script>
 
