@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
 <title>Kcal Macros</title>
 
@@ -12,118 +12,217 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+}
+
+html{
+    font-size:16px;
 }
 
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
     background:#f2f2f7;
-    padding:14px;
-    color:#111;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px 12px;
 }
 
-.container{
-    width:100%;
-    max-width:420px;
-    margin:0 auto;
-}
+/* =========================
+   CARD
+========================= */
 
 .card{
+    width:100%;
+    max-width:500px;
     background:white;
-    border-radius:24px;
-    padding:18px;
+    border-radius:28px;
+    padding:22px;
     box-shadow:
-        0 4px 20px rgba(0,0,0,0.06);
+        0 10px 30px rgba(0,0,0,0.08),
+        0 4px 10px rgba(0,0,0,0.04);
 }
+
+/* =========================
+   TITLE
+========================= */
 
 h1{
     text-align:center;
-    color:#007aff;
-    font-size:28px;
+    margin-bottom:24px;
+    font-size:clamp(1.9rem, 5vw, 2.3rem);
     font-weight:700;
-    margin-bottom:20px;
+    color:#007aff;
     letter-spacing:-0.5px;
 }
 
-.input-label{
-    font-size:14px;
+/* =========================
+   INPUT
+========================= */
+
+.input-group{
+    margin-bottom:22px;
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    font-size:0.95rem;
     font-weight:600;
-    margin-bottom:8px;
-    color:#555;
+    color:#444;
 }
 
 input{
     width:100%;
+    padding:16px;
     border:none;
+    border-radius:18px;
     background:#f2f2f7;
-    border-radius:16px;
-    padding:15px;
-    font-size:18px;
-    margin-bottom:20px;
+    font-size:1rem;
     outline:none;
+    transition:0.2s;
+    appearance:none;
+    -webkit-appearance:none;
 }
 
-.section{
-    margin-bottom:18px;
+input:focus{
+    background:#e9ecf3;
 }
 
-.section-title{
-    font-size:16px;
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper{
+    width:100%;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+
+thead{
+    background:#111827;
+    color:white;
+}
+
+th{
+    padding:16px 8px;
+    font-size:0.9rem;
     font-weight:700;
-    margin-bottom:10px;
-    padding-left:4px;
+    text-align:center;
+    white-space:nowrap;
 }
 
-.blue{
-    color:#007aff;
+td{
+    padding:15px 8px;
+    text-align:center;
+    font-size:0.9rem;
+    border-bottom:1px solid #ececec;
+    word-break:break-word;
 }
 
-.dark{
-    color:#111827;
+tbody tr:last-child td{
+    border-bottom:none;
 }
 
-.row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#f8f8fa;
-    padding:14px 16px;
-    border-radius:16px;
-    margin-bottom:10px;
+tbody tr:nth-child(even){
+    background:#fafafa;
 }
 
 .metric{
-    font-size:15px;
     font-weight:600;
-    color:#333;
+    text-align:left;
+    color:#222;
 }
 
-.value{
-    font-size:15px;
+.highlight{
     font-weight:700;
     color:#007aff;
-    text-align:right;
 }
 
-/* SMALL DEVICES */
+/* =========================
+   RESPONSIVE
+========================= */
 
-@media (max-width:380px){
+@media (max-width: 768px){
 
-    h1{
-        font-size:24px;
+    .card{
+        max-width:100%;
+        border-radius:24px;
+        padding:20px;
     }
 
-    .row{
-        padding:12px;
-    }
-
-    .metric,
-    .value{
-        font-size:14px;
+    th,
+    td{
+        padding:14px 6px;
+        font-size:0.85rem;
     }
 
     input{
-        font-size:16px;
+        padding:15px;
+    }
+}
+
+@media (max-width: 480px){
+
+    body{
+        padding:10px;
+    }
+
+    .card{
+        padding:16px;
+        border-radius:22px;
+    }
+
+    h1{
+        margin-bottom:20px;
+        font-size:1.7rem;
+    }
+
+    label{
+        font-size:0.88rem;
+    }
+
+    input{
+        font-size:0.95rem;
+        padding:14px;
+        border-radius:16px;
+    }
+
+    th{
+        font-size:0.78rem;
+        padding:12px 4px;
+    }
+
+    td{
+        font-size:0.78rem;
+        padding:12px 4px;
+    }
+
+    .metric{
+        font-size:0.78rem;
+    }
+}
+
+@media (max-width: 360px){
+
+    h1{
+        font-size:1.5rem;
+    }
+
+    th,
+    td,
+    .metric{
+        font-size:0.72rem;
+    }
+
+    input{
+        font-size:0.9rem;
     }
 }
 
@@ -132,91 +231,73 @@ input{
 
 <body>
 
-<div class="container">
+<div class="card">
 
-    <div class="card">
+    <h1>Kcal Macros</h1>
 
-        <h1>Kcal Macros</h1>
+    <div class="input-group">
 
-        <div class="input-label">
+        <label for="weight">
             Weight (kg)
-        </div>
+        </label>
 
         <input 
             type="number" 
             id="weight" 
             placeholder="Enter your weight"
-        >
+        />
 
-        <!-- SLABIT -->
+    </div>
 
-        <div class="section">
+    <div class="table-wrapper">
 
-            <div class="section-title blue">
-                Slabit
-            </div>
+        <table>
 
-            <div class="row">
-                <div class="metric">Kcal</div>
-                <div class="value" id="slabitKcal">-</div>
-            </div>
+            <thead>
 
-            <div class="row">
-                <div class="metric">Protein</div>
-                <div class="value" id="slabitProtein">-</div>
-            </div>
+                <tr>
+                    <th></th>
+                    <th>Slabit</th>
+                    <th>Mentinere</th>
+                </tr>
 
-            <div class="row">
-                <div class="metric">Carbs</div>
-                <div class="value" id="slabitCarbs">-</div>
-            </div>
+            </thead>
 
-            <div class="row">
-                <div class="metric">Fat</div>
-                <div class="value" id="slabitFat">-</div>
-            </div>
+            <tbody>
 
-            <div class="row">
-                <div class="metric">Fiber</div>
-                <div class="value" id="slabitFiber">-</div>
-            </div>
+                <tr>
+                    <td class="metric">Kcal</td>
+                    <td id="slabitKcal" class="highlight">-</td>
+                    <td id="maintainKcal" class="highlight">-</td>
+                </tr>
 
-        </div>
+                <tr>
+                    <td class="metric">Protein</td>
+                    <td id="slabitProtein">-</td>
+                    <td id="maintainProtein">-</td>
+                </tr>
 
-        <!-- MENTINERE -->
+                <tr>
+                    <td class="metric">Carbs</td>
+                    <td id="slabitCarbs">-</td>
+                    <td id="maintainCarbs">-</td>
+                </tr>
 
-        <div class="section">
+                <tr>
+                    <td class="metric">Fat</td>
+                    <td id="slabitFat">-</td>
+                    <td id="maintainFat">-</td>
+                </tr>
 
-            <div class="section-title dark">
-                Mentinere
-            </div>
+                <tr>
+                    <td class="metric">Fiber</td>
+                    <td id="slabitFiber">-</td>
+                    <td id="maintainFiber">-</td>
+                </tr>
 
-            <div class="row">
-                <div class="metric">Kcal</div>
-                <div class="value" id="maintainKcal">-</div>
-            </div>
+            </tbody>
 
-            <div class="row">
-                <div class="metric">Protein</div>
-                <div class="value" id="maintainProtein">-</div>
-            </div>
-
-            <div class="row">
-                <div class="metric">Carbs</div>
-                <div class="value" id="maintainCarbs">-</div>
-            </div>
-
-            <div class="row">
-                <div class="metric">Fat</div>
-                <div class="value" id="maintainFat">-</div>
-            </div>
-
-            <div class="row">
-                <div class="metric">Fiber</div>
-                <div class="value" id="maintainFiber">-</div>
-            </div>
-
-        </div>
+        </table>
 
     </div>
 
@@ -237,7 +318,9 @@ function calculate(){
         return;
     }
 
+    // =========================
     // SLABIT
+    // =========================
 
     const slabitKcal = (kg * 22) - 26;
     const slabitProtein = kg * 2.2;
@@ -249,7 +332,9 @@ function calculate(){
     const slabitFiber =
         (14 / 1000) * slabitKcal;
 
+    // =========================
     // MENTINERE
+    // =========================
 
     const maintainKcal = (kg * 28) - 33;
     const maintainProtein = kg * 2;
@@ -263,7 +348,9 @@ function calculate(){
     const maintainFiber =
         (14 / 1000) * maintainKcal;
 
+    // =========================
     // OUTPUT
+    // =========================
 
     document.getElementById("slabitKcal").innerText =
         Math.round(slabitKcal) + " kcal";
